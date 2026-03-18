@@ -1,0 +1,236 @@
+---
+id: admin
+title: Admin Guide
+---
+
+# Admin Guide
+
+Admins manage platform participants — registering accounts, assigning roles, and maintaining the integrity of the account registry. All admin operations are executed on-chain via the `AccountManager` contract.
+
+---
+
+## Prerequisites
+
+1. **The `ADMIN_ROLE`** — granted at platform setup. Only a small number of wallets hold this role.
+2. **MetaMask installed** with a hardware wallet (Ledger or Trezor) strongly recommended for admin operations.
+3. **A small amount of native gas token** (AVAX, ETH, or XRP) on each network you manage.
+
+---
+
+## The Admin Panel
+
+Access the Admin Panel via **MyNCRB → Admin** in the NCRB dApp.
+
+The panel has two main sections:
+
+| Section | Purpose |
+|---|---|
+| **Account Management** | Add, activate, suspend, and remove platform accounts |
+| **Role Management** | Grant and revoke roles on any registered account |
+
+Use the **network selector** at the top to switch between Fuji, Sepolia, and XRPL testnet. All operations act on the selected network only.
+
+---
+
+## Account Lifecycle
+
+```
+(Not registered)
+       │
+       │  Add account
+       ▼
+   INACTIVE
+       │
+       │  Activate
+       ▼
+    ACTIVE  ◄──────────────┐
+       │                   │ Reactivate
+       │  Suspend          │
+       ▼                   │
+  SUSPENDED ───────────────┘
+       │
+       │  Remove
+       ▼
+   REMOVED
+```
+
+| Status | Can transact? | Can list/buy? |
+|---|---|---|
+| INACTIVE | No | No |
+| ACTIVE | Yes | Yes |
+| SUSPENDED | No | No |
+| REMOVED | No | No (permanent) |
+
+---
+
+## Adding an Account
+
+Use this when onboarding a new registry partner, governance member, buyer, or other participant.
+
+1. Go to **MyNCRB → Admin → Account Management**
+2. Click **Add Account**
+3. Fill in:
+
+| Field | Description |
+|---|---|
+| **Wallet Address** | The `0x` address of the account to register |
+| **Account Type** | `EOA` (individual wallet) or `MULTISIG` (Gnosis Safe or equivalent) |
+| **Name** | Display name for the account (e.g. "Verra Registry") |
+| **Metadata** | Optional JSON — e.g. `{ "organisation": "Verra", "website": "https://verra.org" }` |
+| **Network** | Which chain to register on |
+
+4. Click **Add** — MetaMask prompts you to sign `AccountManager.addAccount()`
+5. Confirm in MetaMask. The account is created in `INACTIVE` status.
+
+> Accounts start as `INACTIVE` and must be explicitly activated before they can transact on the platform.
+
+---
+
+## Activating an Account
+
+1. Find the account in the account list (search by address or name)
+2. Click **Activate**
+3. Confirm the `AccountManager.activateAccount()` transaction in MetaMask
+
+The account status changes to `ACTIVE` — the wallet can now interact with the registry, marketplace, and governance portals.
+
+---
+
+## Suspending an Account
+
+Use suspension when an account needs to be temporarily blocked — for example, pending a compliance review.
+
+1. Find the account in the account list
+2. Click **Suspend**
+3. Enter a reason (stored on-chain)
+4. Confirm the `AccountManager.suspendAccount()` transaction in MetaMask
+
+A suspended account cannot transact but retains its registration. It can be reactivated later.
+
+---
+
+## Removing an Account
+
+Removal is permanent and should only be used when an account is no longer permitted on the platform.
+
+1. Find the account in the account list
+2. Click **Remove**
+3. Enter a reason (stored on-chain)
+4. Confirm the `AccountManager.removeAccount()` transaction in MetaMask
+
+> Removed accounts cannot be reinstated. If the organisation needs to return to the platform, register a new wallet address.
+
+---
+
+## Managing Roles
+
+Roles control what each account is permitted to do. Grant the minimum roles necessary for each participant.
+
+### Available Roles
+
+| Role | What it allows |
+|---|---|
+| `REGISTRY_ROLE` | Submit certificates via the Registry Portal |
+| `GOVERNANCE_ROLE` | Vote on mint proposals in the Governance Portal |
+| `COMPLIANCE_ROLE` | Freeze tokens and execute forced transfers on `RWAToken` |
+| `ORACLE_ROLE` | Write quality assessment scores and price data on-chain |
+| `MINTER_ROLE` | Mint RWA tokens (held by `MultiSigGovernance` — rarely granted directly) |
+| `BURNER_ROLE` | Burn RWA tokens (used for retirement) |
+| `PAUSER_ROLE` | Pause and unpause contract functions in emergencies |
+| `MARKETPLACE_OPERATOR_ROLE` | Manage marketplace listings and settings |
+| `CLAIMS_ROLE` | Record buyer claims in `BuyerClaimsRegistry` |
+| `ADMIN_ROLE` | Full admin — grant/revoke all roles. Grant with extreme care. |
+
+### Granting a Role
+
+1. Go to **MyNCRB → Admin → Role Management**
+2. Search for the account by address
+3. Click **Grant Role**
+4. Select the role from the dropdown
+5. Select the network
+6. Confirm the transaction in MetaMask
+
+### Revoking a Role
+
+1. Find the account and expand its current roles
+2. Click **Revoke** next to the role you want to remove
+3. Confirm the transaction in MetaMask
+
+---
+
+## Common Onboarding Sequences
+
+### Onboarding a Registry Partner
+
+```
+1. Add account (type: MULTISIG preferred for registries)
+2. Activate account
+3. Grant REGISTRY_ROLE
+```
+
+### Onboarding a Governance Member
+
+```
+1. Add account (type: MULTISIG strongly recommended)
+2. Activate account
+3. Grant GOVERNANCE_ROLE
+```
+
+### Onboarding a Buyer
+
+```
+1. Add account (type: EOA or MULTISIG)
+2. Activate account
+(No additional roles required — active accounts can buy on the marketplace)
+```
+
+### Onboarding a Compliance Officer
+
+```
+1. Add account
+2. Activate account
+3. Grant COMPLIANCE_ROLE
+```
+
+---
+
+## Multi-Network Management
+
+Each network (Fuji, Sepolia, XRPL) has its own independent `AccountManager` contract. An account registered on Fuji is **not** automatically registered on Sepolia or XRPL. If a partner needs to operate on multiple chains, repeat the add/activate/role-grant sequence on each network.
+
+Use the network selector in the Admin Panel to switch between networks.
+
+---
+
+## Known Issues — Fuji and XRPL RPC
+
+On **Avalanche Fuji** and **XRPL EVM Testnet**, the `addAccount()` call occasionally fails via the dApp due to RPC instability (transaction reverts with no revert reason, gas used ~38,342). If this happens:
+
+Use the `manage-accounts.js` script from `ncrb-contracts` directly:
+
+```bash
+# Add and activate an account on Fuji
+COMMAND=add ADDRESS=0xYourAddress NAME="Partner Name" \
+  npx hardhat run scripts/manage-accounts.js --network fuji
+
+COMMAND=activate ADDRESS=0xYourAddress \
+  npx hardhat run scripts/manage-accounts.js --network fuji
+```
+
+Ethereum Sepolia does not have this issue.
+
+---
+
+## Security Recommendations
+
+- **Use a hardware wallet** (Ledger or Trezor) for the admin key — never a hot wallet
+- **Limit `ADMIN_ROLE` holders** to the minimum number of people necessary
+- **Use Gnosis Safe** for registry and governance accounts — multi-sig reduces single-point-of-failure risk
+- **Review role assignments regularly** — revoke roles that are no longer needed
+- **Log all admin actions** — all on-chain operations are permanently auditable via the block explorer
+
+---
+
+## Need Help?
+
+See the [FAQ](../faq) or visit [Support](../support).
