@@ -1,80 +1,94 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  link: string;
   description: ReactNode;
 };
 
 const FeatureList1: FeatureItem[] = [
   {
-    title: 'About',
+    title: 'About NCRB',
     Svg: require('@site/static/img/faq.svg').default,
-    link: '/docs/about',
+    link: '/intro',
     description: (
       <>
-        What is NCRB Marketplace.
+        What is the NCRB Marketplace and how does RWA tokenization work?
       </>
     ),
   },
   {
     title: 'Quick Start Guides',
     Svg: require('@site/static/img/guides.svg').default,
-    link: '/docs/guides',
+    link: '/docs/quickstart/',
     description: (
       <>
-        Get up and running quickly.
+        Install MetaMask, add networks, and get USDC — up and running fast.
       </>
     ),
   },
   {
     title: 'Marketplace Guides',
     Svg: require('@site/static/img/guides.svg').default,
-    link: '/docs/marketplace',
+    link: '/docs/marketplace/',
     description: (
       <>
-        Everything related to NCRB Marketplace.
+        Guides for registry partners, governance members, buyers, and admins.
       </>
     ),
   },
 ];
 
-const FeatureList2 = [
+const FeatureList2: FeatureItem[] = [
   {
     title: 'FAQs',
     Svg: require('@site/static/img/faq.svg').default,
-    link: '/docs/faq',
+    link: '/docs/faq/',
     description: (
       <>
-        Frequently Asked Questions.
+        Frequently asked questions about all 10 supported asset classes.
       </>
     ),
   },
   {
     title: 'For Developers',
     Svg: require('@site/static/img/for-developers.svg').default,
-    link: '/docs/developers',
+    link: '/docs/developers/',
     description: (
       <>
-        Developers documentation.
+        API reference, smart contract addresses, architecture, and quality scoring.
+      </>
+    ),
+  },
+  {
+    title: 'Support',
+    Svg: require('@site/static/img/faq.svg').default,
+    link: '/docs/support/',
+    description: (
+      <>
+        Get help from the NCRB team or browse common troubleshooting guides.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({Svg, title, description, link}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
+      <Link to={link} className={styles.featureLink}>
+        <div className="text--center">
+          <Svg className={styles.featureSvg} role="img" />
+        </div>
+        <div className={clsx('text--left', styles.featureText)}>
+          <Heading as="h3">{title}</Heading>
+          <p>{description}</p>
+        </div>
+      </Link>
     </div>
   );
 }
