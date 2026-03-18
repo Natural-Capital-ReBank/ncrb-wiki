@@ -1,5 +1,6 @@
 ---
 id: intro
+slug: /intro
 title: About NCRB
 ---
 
