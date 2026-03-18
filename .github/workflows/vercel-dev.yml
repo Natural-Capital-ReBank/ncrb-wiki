@@ -66,4 +66,4 @@ jobs:
       - name: Set Alias for Development
         run: |
           url_without_https=$(echo "${{ steps.deploy.outputs.url }}" | sed 's|https://||')
-          vercel alias set $url_without_https www.test.ncrb.world --token=${{ secrets.VERCEL_TOKEN }} --scope=smartcorp
+          vercel alias set $url_without_https wiki.test.ncrb.world --token=${{ secrets.VERCEL_TOKEN }} --scope=smartcorp
