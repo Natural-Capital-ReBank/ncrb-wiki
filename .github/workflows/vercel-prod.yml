@@ -1,0 +1,62 @@
+name: Deploy to Vercel Production
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
+  NODE_VERSION: '20'
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      # Checkout ncrb-website
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Configure Git
+      - name: Configure Git Author
+        run: |
+          git config user.email "zaki.alam@gmail.com"
+          git config user.name "Zaki Alam"
+
+      # Install Vercel CLI
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      # Pull Vercel Environment and Build
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Deploy to Production
+      - name: Deploy to Vercel Production
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=smartcorp)
+          echo "url=$url" >> $GITHUB_OUTPUT
+          echo "Production deployment: $url"
+
+      - name: Display Production URL
+        run: echo "✅ Production deployed to ${{ steps.deploy.outputs.url }}"
