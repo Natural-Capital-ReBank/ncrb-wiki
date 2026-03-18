@@ -15,7 +15,7 @@ const FeatureList1: FeatureItem[] = [
   {
     title: 'About NCRB',
     Svg: require('@site/static/img/faq.svg').default,
-    link: '/intro',
+    link: '/docs/intro',
     description: (
       <>
         What is the NCRB Marketplace and how does RWA tokenization work?
