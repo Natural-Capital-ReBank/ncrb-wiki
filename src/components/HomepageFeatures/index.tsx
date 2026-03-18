@@ -9,7 +9,7 @@ type FeatureItem = {
   description: ReactNode;
 };
 
-const FeatureList: FeatureItem[] = [
+const FeatureList1: FeatureItem[] = [
   {
     title: 'About',
     Svg: require('@site/static/img/faq.svg').default,
@@ -31,7 +31,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'arketplace Guides',
+    title: 'Marketplace Guides',
     Svg: require('@site/static/img/guides.svg').default,
     link: '/docs/marketplace',
     description: (
@@ -84,7 +84,13 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
+          {FeatureList1.map((props, idx) => (
+            <Feature key={idx} {...props} />
+          ))}
+        </div>
+        <br />
+        <div className="row">
+          {FeatureList2.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
         </div>
