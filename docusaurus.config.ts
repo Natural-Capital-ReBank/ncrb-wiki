@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'NCRB',
+  title: 'Natural Capital ReBank',
   tagline: 'Welcome to the Official NCRB Marketplace Documentations!',
   favicon: 'img/favicon.ico',
 
@@ -17,13 +17,10 @@ const config: Config = {
   // Set the production url of your site here
   url: 'https://wiki.ncrb.world',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Natural Capital ReBank',
-  projectName: 'NCRBwiki', // Usually your repo name.
+  projectName: 'NCRBwiki',
 
   onBrokenLinks: 'throw',
 
