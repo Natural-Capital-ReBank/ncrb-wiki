@@ -131,7 +131,7 @@ const config: Config = {
           items: [
             {
               label: 'Welcome To NCRB',
-              to: '/docs/about',
+              to: '/docs/intro',
             },
           ],
         },
