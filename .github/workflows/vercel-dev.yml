@@ -1,0 +1,69 @@
+name: Deploy to Vercel Development
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
+  NODE_VERSION: '24'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout ncrb-website
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: dev
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Configure Git
+      - name: Configure Git Author
+        run: |
+          git config user.email "zaki.alam@gmail.com"
+          git config user.name "Zaki Alam"
+
+      - name: Rewrite commit author
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          git commit --amend --no-edit --author="Zaki Alam <zaki.alam@gmail.com>" --allow-empty || true
+          git push --force || true
+
+      # Install Vercel CLI
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      # Pull Vercel Environment and Build
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Deploy
+      - name: Deploy to Vercel
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --scope=smartcorp)
+          echo "url=$url" >> $GITHUB_OUTPUT
+
+      - name: Set Alias for Development
+        run: |
+          url_without_https=$(echo "${{ steps.deploy.outputs.url }}" | sed 's|https://||')
+          vercel alias set $url_without_https wiki.test.ncrb.world --token=${{ secrets.VERCEL_TOKEN }} --scope=smartcorp
