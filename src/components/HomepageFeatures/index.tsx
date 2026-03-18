@@ -11,32 +11,55 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'About',
+    Svg: require('@site/static/img/faq.svg').default,
+    link: '/docs/about',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        What is NCRB Marketplace.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Quick Start Guides',
+    Svg: require('@site/static/img/guides.svg').default,
+    link: '/docs/guides',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Get up and running quickly.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'arketplace Guides',
+    Svg: require('@site/static/img/guides.svg').default,
+    link: '/docs/marketplace',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Everything related to NCRB Marketplace.
+      </>
+    ),
+  },
+];
+
+const FeatureList2 = [
+  {
+    title: 'FAQs',
+    Svg: require('@site/static/img/faq.svg').default,
+    link: '/docs/faq',
+    description: (
+      <>
+        Frequently Asked Questions.
+      </>
+    ),
+  },
+  {
+    title: 'For Developers',
+    Svg: require('@site/static/img/for-developers.svg').default,
+    link: '/docs/developers',
+    description: (
+      <>
+        Developers documentation.
       </>
     ),
   },
