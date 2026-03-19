@@ -1,16 +1,21 @@
-#FROM 769325152790.dkr.ecr.us-west-2.amazonaws.com/nodejs:nodejs-16.14.2
-FROM node:current-alpine3.15
-RUN apk update
-RUN apk add --no-cache --virtual git yarn curl
+# syntax=docker/dockerfile:1
 
-# Only include the files that are necessary for the application, always double check
-# the .dockerignore file prior to running docker build
-WORKDIR /usr/src/app
+# ── Stage 1: build ────────────────────────────────────────────────────────────
+FROM node:24-alpine AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
+RUN npm run build
 
-# Trigger the run commands
-RUN yarn install
-RUN yarn run build
+# ── Stage 2: serve ────────────────────────────────────────────────────────────
+FROM node:24-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/build        ./build
+COPY --from=builder /app/package.json ./package.json
 
-
-CMD [ "yarn", "run", "serve"]
+EXPOSE 3000
+# --host 0.0.0.0 is required — Docusaurus serve binds to localhost by default,
+# which makes it unreachable outside the container.
+CMD ["npx", "docusaurus", "serve", "--host", "0.0.0.0", "--port", "3000"]
