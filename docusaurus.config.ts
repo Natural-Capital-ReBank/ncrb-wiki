@@ -2,21 +2,18 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+const isProduction = process.env.ALLOW_INDEXING === 'true';
 
 const config: Config = {
   title: 'Natural Capital ReBank',
-  tagline: 'Official NCRB Marketplace Documentations!',
+  tagline: 'Official NCRB Marketplace Documentation',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://wiki.ncrb.world',
-  // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
 
   organizationName: 'Natural Capital ReBank',
@@ -24,13 +21,59 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // Prevent non-production deployments from being indexed
+  noIndex: !isProduction,
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  // Structured data for AEO / GEO (Answer Engine & Generative Engine Optimization)
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Natural Capital ReBank',
+        alternateName: 'NCRB',
+        url: 'https://ncrb.world',
+        logo: 'https://wiki.ncrb.world/img/ncrb-logo.png',
+        description:
+          'Natural Capital ReBank (NCRB) is a Real World Asset (RWA) tokenization marketplace for natural capital assets including carbon credits, biodiversity, water rights, and more — powered by blockchain technology.',
+        sameAs: [
+          'https://x.com/NCRBplatform',
+          'https://www.linkedin.com/company/natural-capital-rebank/',
+          'https://facebook.com/NCRBplatform',
+          'https://youtube.com/@NCRBplatform',
+        ],
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'NCRB Wiki',
+        url: 'https://wiki.ncrb.world',
+        description:
+          'Official documentation and knowledge base for the Natural Capital ReBank marketplace — guides, FAQs, developer references, and smart contract documentation.',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Natural Capital ReBank',
+          url: 'https://ncrb.world',
+        },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://wiki.ncrb.world/search?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      }),
+    },
+  ],
 
   presets: [
     [
@@ -39,48 +82,32 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   feedOptions: {
-        //     type: ['rss', 'atom'],
-        //     xslt: true,
-        //   },
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        //   // Useful options to enforce blogging best practices
-        //   onInlineTags: 'warn',
-        //   onInlineAuthors: 'warn',
-        //   onUntruncatedBlogPosts: 'warn',
-        // },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
-        // gtag: {
-        //   trackingID: 'G-DE7XL5LS8W',
-        //   anonymizeIP: false,
-        // },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    // image: 'img/docusaurus-social-card.jpg',
+    image: 'img/ncrb-logo.png',
+    metadata: [
+      {name: 'keywords', content: 'NCRB, natural capital, RWA tokenization, carbon credits, biodiversity credits, blockchain, DeFi, real world assets, marketplace'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:site', content: '@NCRBplatform'},
+      {name: 'og:type', content: 'website'},
+      {name: 'og:site_name', content: 'NCRB Wiki'},
+    ],
     algolia: {
-      // The application ID provided by Algolia
       appId: 'CAZHEJVH9P',
-      // Public API key: it is safe to commit it
       apiKey: '12fcab9e2e58cb3beaa6ca1727f39529',
       indexName: 'NCRB Wiki',
-      // askAi: 'YOUR_ALGOLIA_ASSISTANT_ID', // Replace with your Algolia Assistant ID
-      // // Optional: see doc section below
-      // contextualSearch: true,
-      // // Optional: Algolia search parameters
-      // searchParameters: {},
-      // // Optional: path for search page that enabled by default (`false` to disable it)
-      // searchPagePath: 'search',
     },
     colorMode: {
       respectPrefersColorScheme: true,
@@ -92,35 +119,34 @@ const config: Config = {
         src: 'img/ncrb-logo.png',
       },
       items: [
-        // {to: '/blog', label: 'Blog', position: 'left'},
         {
-            type: 'doc',
-            docId: 'marketplace/intro',
-            position: 'left',
-            label: 'Guides'
-          },
-          {
-            type: 'doc',
-            docId: 'faq/faq',
-            position: 'left',
-            label: 'FAQs'
-          },
-          {
-            type: 'doc',
-            docId: 'developers/intro',
-            position: 'left',
-            label: 'Developers'
-          },
-          {
-            href: 'https://www.ncrb.world/coming-soon',
-            label: 'Marketplace',
-            position: 'right',
-          },
-          {
-            href: 'https://ncrb.world',
-            label: 'Website',
-            position: 'right',
-          },
+          type: 'doc',
+          docId: 'marketplace/intro',
+          position: 'left',
+          label: 'Guides',
+        },
+        {
+          type: 'doc',
+          docId: 'faq/faq',
+          position: 'left',
+          label: 'FAQs',
+        },
+        {
+          type: 'doc',
+          docId: 'developers/intro',
+          position: 'left',
+          label: 'Developers',
+        },
+        {
+          href: 'https://www.ncrb.world/coming-soon',
+          label: 'Marketplace',
+          position: 'right',
+        },
+        {
+          href: 'https://ncrb.world',
+          label: 'Website',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -139,7 +165,7 @@ const config: Config = {
           title: 'GUIDES',
           items: [
             {
-              label: 'Welcome',
+              label: 'Marketplace',
               to: '/docs/marketplace',
             },
           ],
@@ -151,14 +177,14 @@ const config: Config = {
               label: 'Getting Started',
               to: '/docs/developers',
             },
-                        ],
+          ],
         },
         {
           title: 'Links',
           items: [
             {
               label: 'NCRB Website',
-              href: 'https://NCRB.world',
+              href: 'https://ncrb.world',
             },
             {
               label: 'NCRB Marketplace',
