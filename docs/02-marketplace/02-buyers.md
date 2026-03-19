@@ -1,0 +1,198 @@
+---
+id: buyers
+title: Buyer Guide
+---
+
+# Buyer Guide
+
+Buyers on the NCRB marketplace purchase tokenized real-world asset credits — carbon offsets, biodiversity credits, renewable energy certificates, and more. Purchases are instant, on-chain, and verifiable. When you retire a credit, a permanent record is created on the blockchain — your auditable proof of environmental action.
+
+---
+
+## Prerequisites
+
+### For Browsing (No Wallet Required)
+
+You can browse all active listings, filter by asset type, country, SDG goals, quality band, and price without connecting a wallet.
+
+### For Purchasing
+
+You need:
+
+1. **MetaMask installed** — see [Install MetaMask](../quickstart/metamask)
+2. **The correct network added** — [Avalanche](../quickstart/avalanche-network) or [XRPL EVM](../quickstart/xrpl-network)
+3. **USDC in your wallet** on the same network as the listing — see [Add USDC](../quickstart/add-usdc)
+4. **A small amount of native gas token** (AVAX or XRP) to pay transaction fees
+5. **A registered and active account** — your wallet address must be registered in the `AccountManager` contract. Contact NCRB to register as a buyer.
+
+---
+
+## Browsing the Marketplace
+
+Go to the **Trading** section of the NCRB dApp to see all active listings.
+
+### Filtering Listings
+
+| Filter | Options |
+|---|---|
+| **Asset Type** | Carbon, Plastic, Nitrogen, Phosphorus, Land, Mining, Water, Renewable Energy, Forestry, Biodiversity |
+| **Quality Band** | AAA, AA, A, BBB |
+| **Country** | Country of the underlying project |
+| **Vintage** | Year range (e.g. 2020–2024) |
+| **SDG Goals** | Filter by UN Sustainable Development Goals the project contributes to |
+| **Price** | Min / max price per unit |
+
+### Sorting Listings
+
+- **Price** — lowest or highest first
+- **Quality Score** — highest rated first
+- **Vintage** — newest or oldest first
+- **Listing ID** — chronological order
+
+### View Modes
+
+- **Grid** — visual card layout with key stats
+- **List** — compact table view for comparing many listings
+- **Map** — geographic view of where projects are located *(coming soon)*
+
+---
+
+## Understanding a Listing
+
+Each listing shows:
+
+| Field | Description |
+|---|---|
+| **Asset Type** | The type of natural capital credit |
+| **Serial Number** | The registry's unique certificate identifier |
+| **Registry** | The organisation that issued and verified the certificate |
+| **Quality Score & Band** | 0–100 score and rating (AAA → BBB) |
+| **Vintage** | Year the environmental benefit was generated |
+| **Country** | Where the project is located |
+| **Quantity Available** | How many units are for sale |
+| **Price per Unit** | In USDC |
+| **SDG Goals** | UN SDGs the project contributes to |
+| **IPFS Document** | Link to the original verified certificate |
+
+---
+
+## Buying Credits
+
+### Step 1 — Connect Your Wallet
+
+1. Click **Connect Wallet** in the top navigation
+2. Select **MetaMask** in the connection modal
+3. Approve the connection in MetaMask
+4. Make sure your active network matches the listing's network
+
+### Step 2 — Select a Listing
+
+1. Browse or search for the credit you want to buy
+2. Click on a listing to open the detail view
+3. Review the quality score, certificate document (IPFS link), and project details
+
+### Step 3 — Choose Quantity
+
+1. Click **Buy**
+2. Enter how many units you want to purchase
+3. The total cost in USDC is calculated automatically
+4. Check that you have sufficient USDC balance (shown in the buy modal)
+
+### Step 4 — Approve USDC
+
+Before your first purchase (or if your USDC allowance is too low), you need to approve the marketplace contract to spend your USDC:
+
+1. The portal will show an **Approve USDC** button if needed
+2. Click it — MetaMask will prompt you to sign an ERC-20 approval transaction
+3. Confirm in MetaMask and wait for confirmation
+
+This is a one-time step per network. Future purchases on the same network will not require re-approval unless you buy more than the approved amount.
+
+### Step 5 — Confirm Purchase
+
+1. Click **Confirm Purchase**
+2. MetaMask prompts you to sign the `RWAMarketplace.buy()` transaction
+3. Confirm in MetaMask
+
+The marketplace contract:
+- Transfers your USDC to the seller (minus the 2.5% platform fee)
+- Transfers the RWA tokens to your wallet
+- Records the trade on-chain
+
+Settlement is **instant** — tokens arrive in your wallet in the same transaction.
+
+---
+
+## After Purchasing
+
+### View Your Holdings
+
+Go to **MyNCRB → Dashboard** to see:
+- Total RWA tokens held by asset type
+- Portfolio value in USD (based on real-time oracle prices)
+- Environmental impact metrics (tCO₂e offset, kg plastic, etc.)
+
+Go to **MyNCRB → Portfolio** for a detailed breakdown:
+- Holdings by asset type with allocation percentages
+- Value per holding in USD
+- Environmental impact by category
+
+### Selling Credits
+
+If you want to sell credits you hold:
+
+1. Go to **Trading → My Listings**
+2. Click **Create Listing**
+3. Select the token, set quantity and price per unit
+4. Click **List** — MetaMask will prompt you to approve the token transfer to escrow and sign the listing transaction
+5. Your listing appears in the marketplace immediately
+
+To cancel a listing:
+1. Go to **Trading → My Listings**
+2. Find your listing and click **Cancel**
+3. Confirm in MetaMask — tokens are returned to your wallet
+
+---
+
+## Retiring Credits
+
+Retiring a credit means permanently removing it from circulation — the token is burned and your claim is recorded on-chain. This is the step that creates your auditable proof of environmental action for ESG reporting, SBTi claims, or VCMI compliance.
+
+Retirement functionality is available through the **MyNCRB → Dashboard**. The **BuyerClaimsRegistry** contract records:
+- Your wallet address
+- The certificate serial number retired
+- The standard claimed (e.g. VCS, GS4GG)
+- The timestamp
+
+This record is permanent and publicly verifiable.
+
+---
+
+## Platform Fees
+
+| Fee | Amount |
+|---|---|
+| **Trading fee** | 2.5% of the purchase price, deducted from the seller's proceeds |
+| **Gas fee** | Variable — paid in AVAX (Avalanche) or XRP (XRPL EVM) |
+
+There is no fee to browse listings or create a buyer account.
+
+---
+
+## Supported Standards
+
+Credits on NCRB are verified against industry standards including:
+- **ICVCM Core Carbon Principles (CCP)** — carbon credit integrity
+- **Verra VCS / Gold Standard / ACR / CAR** — carbon registry verification
+- **SBTi Net-Zero Standard** — science-based targets alignment
+- **VCMI Claims Code** — Silver, Gold, and Platinum buyer claims
+- **UK Biodiversity Metric 4.0** — biodiversity net gain
+- **Kunming-Montreal GBF** — global biodiversity framework
+
+For a full list of supported standards by asset type, see the [Asset Types FAQ](../faq/carbon-credits).
+
+---
+
+## Need Help?
+
+See the [FAQ](../faq) or visit [Support](../support).

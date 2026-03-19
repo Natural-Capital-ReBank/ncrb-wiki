@@ -48,6 +48,8 @@ jobs:
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts
+        env:
+          ALLOW_INDEXING: 'true'
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       # Deploy to Production

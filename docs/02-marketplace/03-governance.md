@@ -1,0 +1,169 @@
+---
+id: governance
+title: Governance Guide
+---
+
+# Governance Member Guide
+
+Governance members are the trusted signatories responsible for reviewing and approving certificate submissions before RWA tokens are minted. NCRB uses a **3-of-5 multi-signature** model — at least 3 out of 5 governance members must approve a proposal for tokens to be minted.
+
+---
+
+## Prerequisites
+
+To participate in governance you need:
+
+1. **The `GOVERNANCE_ROLE`** — granted to your wallet by an NCRB admin. Only 5 wallets hold this role at any time.
+2. **MetaMask installed** and connected to the correct network — see the [Quickstart guides](../quickstart).
+3. **A small amount of native gas token** (AVAX, ETH, or XRP) in your wallet — each vote is an on-chain transaction.
+
+---
+
+## How Governance Works
+
+When a registry partner submits a certificate, the Oracle API scores it and — if it passes the minimum 50-point threshold — creates a **mint proposal** in the `MultiSigGovernance` contract. Governance members then vote to approve or reject it.
+
+```
+Certificate submitted by registry
+        │
+        ▼
+Oracle API scores certificate (≥ 50 required)
+        │
+        ▼
+Mint proposal created on-chain
+        │
+        ▼
+Governance members notified (7-day voting window)
+        │
+   ┌────┴────────────────────────────┐
+   │ Members vote Approve or Reject  │
+   │ (3-of-5 approval required)      │
+   └────┬──────────────────┬─────────┘
+        │                  │
+   3+ Approve          Majority Reject
+   before expiry         or 7-day timeout
+        │                  │
+   Tokens minted        Proposal expires —
+   and distributed      no tokens minted
+```
+
+---
+
+## The Governance Portal
+
+### Accessing the Portal
+
+1. Go to the **Governance Portal** in the NCRB dApp
+2. Click **Connect Wallet** and select MetaMask
+3. The portal checks that your wallet holds `GOVERNANCE_ROLE` — if not, the voting interface will not appear
+4. Select the network (Fuji, Sepolia, or XRPL testnet)
+
+### Proposal Tabs
+
+| Tab | What it shows |
+|---|---|
+| **Pending** | Active proposals awaiting votes — your action required here |
+| **Approved** | Proposals that reached 3-of-5 approval and triggered token minting |
+| **Rejected / Expired** | Proposals that were rejected outright or timed out after 7 days |
+
+---
+
+## Reviewing a Proposal
+
+Each proposal card shows:
+
+| Field | Description |
+|---|---|
+| **Certificate Serial** | The registry's unique identifier for this asset |
+| **Asset Type** | e.g. Carbon Credit, Biodiversity Credit |
+| **Registry** | The submitting organisation |
+| **Quality Score** | 0–100 composite score with band (AAA → BBB) |
+| **Quantity & Unit** | Volume being tokenized (e.g. 500 tCO₂e) |
+| **Vintage** | Year the benefit was generated |
+| **Country** | Project country |
+| **IPFS Document** | Link to the certificate document uploaded by the registry |
+| **Approval Count** | Current votes (e.g. `2 / 3 required`) |
+| **Expires** | Countdown to proposal expiry |
+
+### What to Check Before Voting
+
+- **Quality score is plausible** given the asset type and methodology described
+- **Certificate document is accessible** via the IPFS link and matches the on-chain metadata
+- **Serial number is genuine** — cross-reference with the issuing registry's public records where possible
+- **No prior submission** for the same serial number on this network (CAD Registry handles this automatically, but double-check for novel assets)
+
+---
+
+## Casting Your Vote
+
+### Approve
+
+1. Open the proposal you want to approve
+2. Click **Approve**
+3. MetaMask prompts you to sign the `MultiSigGovernance.approve(proposalId)` transaction
+4. Confirm in MetaMask and wait for on-chain confirmation
+5. The approval count increments — when the third approval is recorded, tokens mint automatically
+
+### Reject
+
+1. Open the proposal you want to reject
+2. Click **Reject**
+3. MetaMask prompts you to sign the `MultiSigGovernance.reject(proposalId)` transaction
+4. Optionally add a rejection reason (stored on-chain for the registry to review)
+5. Confirm in MetaMask
+
+> **Note:** A majority of rejections does not immediately cancel a proposal — it expires at the 7-day mark if 3 approvals are not reached. However, a rejection vote is recorded on-chain and contributes to the audit trail.
+
+---
+
+## Token Minting on Approval
+
+When the third approval is recorded, the `MultiSigGovernance` contract automatically:
+
+1. Calls `RWAToken.mint()` for the approved quantity
+2. Distributes tokens atomically to all configured recipients in a single transaction:
+   - Asset Owner — 70% (default)
+   - NCRB Platform — 10% (default)
+   - Registry Partner — 10% (default)
+   - Third Party — 10% (default)
+3. Emits a `ProposalExecuted` event — indexed by `ncrb-indexer` and visible in the portal
+
+The registry partner and asset owner will see their token balances update in **MyNCRB → Dashboard** immediately after minting.
+
+---
+
+## Proposal Expiry
+
+Proposals expire **7 days** after creation if 3 approvals have not been reached. Expired proposals:
+- Move to the **Rejected / Expired** tab
+- Cannot be re-opened — the registry must submit a new certificate
+- Leave a permanent on-chain record of the vote history up to expiry
+
+---
+
+## Governance Responsibilities
+
+As a governance member you are responsible for ensuring that:
+
+- Tokens are only minted for **verified, legitimate** certificates from approved registry partners
+- **Quality scores are reasonable** for the asset type submitted
+- You vote **within the 7-day window** — an expired proposal requires the registry to resubmit
+- You never approve a certificate you cannot verify — if in doubt, reject and communicate with the registry
+
+Governance keys should be held in a **hardware wallet** (Ledger, Trezor) or **Gnosis Safe** for institutional members. Never store a governance key in a hot wallet.
+
+---
+
+## Viewing Vote History
+
+All votes are recorded permanently on-chain. To review past decisions:
+
+1. Go to the **Governance Portal** → **Approved** or **Rejected / Expired** tabs
+2. Each proposal shows the full vote history including which governance wallets voted and when
+3. You can also query the `MultiSigGovernance` contract directly or view events in the **Explorer** portal
+
+---
+
+## Need Help?
+
+See the [FAQ](../faq) or visit [Support](../support).

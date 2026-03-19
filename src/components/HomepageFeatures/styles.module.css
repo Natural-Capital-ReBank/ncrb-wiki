@@ -6,6 +6,65 @@
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 90px;
+}
+
+.featureLink {
+  display: block;
+  text-decoration: none !important;
+  height: 100%;
+  border-radius: 16px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.featureText {
+  padding: 0 1rem 1rem;
+}
+
+/* Dark mode cards */
+.features > div > div > div {
+  background: #141619;
+  margin-right: 24px;
+  border: 1px solid #2e333a;
+  border-radius: 16px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.features > div > div > div:hover {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), #141619;
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-3px);
+}
+
+/* Light mode cards */
+[data-theme='light'] .features > div > div > div {
+  background: #ffffff;
+  margin-right: 24px;
+  border: 1px solid #e5e8eb;
+  border-radius: 16px;
+}
+
+[data-theme='light'] .features > div > div > div:hover {
+  background: linear-gradient(0deg, rgba(4, 17, 29, 0.04), rgba(4, 17, 29, 0.04)), #ffffff;
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-3px);
+}
+
+/* Link colours */
+[data-theme='dark'] .featureLink {
+  color: #ffffff;
+}
+
+[data-theme='light'] .featureLink {
+  color: #04111d;
+}
+
+[data-theme='dark'] .featureLink:hover {
+  color: #ffffff;
+}
+
+[data-theme='light'] .featureLink:hover {
+  color: #04111d;
 }
