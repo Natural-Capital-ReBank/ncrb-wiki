@@ -75,6 +75,12 @@ const config: Config = {
     },
   ],
 
+  plugins: [
+    ...(isProduction
+      ? [['@docusaurus/plugin-google-gtag', { trackingID: 'G-JRD4XVQLXP' }]]
+      : []),
+  ],
+
   presets: [
     [
       'classic',
