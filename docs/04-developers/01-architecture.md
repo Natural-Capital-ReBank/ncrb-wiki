@@ -75,7 +75,7 @@ The indexer is the **sole writer** to the shared database for blockchain-derived
 
 ### Shared PostgreSQL Database
 
-A single Neon PostgreSQL instance is shared between `ncrb-oracles` and `ncrb-indexer`. The schema is managed via 14 sequential SQL migration files in `ncrb-oracles/database/migrations/`.
+A single Neon PostgreSQL instance is shared between `ncrb-oracles` and `ncrb-indexer`. The schema is managed via 15 sequential SQL migration files in `ncrb-oracles/database/migrations/`.
 
 Key table groups:
 
@@ -87,7 +87,7 @@ Key table groups:
 | **Compliance** | `compliance_records`, `onchain_standards`, `buyer_claims` |
 | **Quality** | `onchain_quality_profiles`, `onchain_rating_bands` |
 | **Prices** | `price_sources`, `price_history`, `price_aggregations`, `price_alerts` |
-| **Reference** | `sdg_definitions`, `asset_sdg_mappings`, `asset_images`, `countries` |
+| **Reference** | `sdg_definitions`, `asset_sdg_mappings`, `asset_images`, `countries`, `asset_subtypes` |
 | **Registry Config** | `registries`, `asset_types`, `registry_methodologies`, `quality_parameters`, `quality_band_mappings` |
 | **Sync State** | `indexer_sync_state` |
 
