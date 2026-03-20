@@ -87,6 +87,7 @@ Fill in the certificate metadata:
 | **Description** | Brief description of the project and environmental impact |
 | **Vintage / Year** | Year the environmental benefit was generated |
 | **Methodology** | Registry methodology code (e.g. `VM0015` for Verra) |
+| **Sub-Type** | Asset sub-classification (e.g. `removal_dac`, `afforestation`). Sub-types with scoring impact are indicated in the dropdown. |
 | **Country** | Country where the project is located |
 | **Quantity** | Volume of the asset (in the unit for your asset type) |
 
@@ -112,6 +113,16 @@ Enter the quality inputs that will be scored by the Oracle API. The fields vary 
 | Co-benefits | CCB Gold, SDG 13, SDG 15 |
 | Indigenous Community Engagement | Yes / No |
 
+**For carbon credits — Article 6 compliance fields (optional but affect quality score):**
+
+| Field | Options | Scoring impact |
+|---|---|---|
+| **Credit Mechanism** | VCM (default), Article 6.4, CORSIA, CDM → 6.4 | Article 6.4 → +5 additionality; CORSIA → +3 |
+| **Corresponding Adjustment** | Not applicable, Applied | Applied → +2 additionality |
+| **Letter of Authorisation (LoA) Status** | Not required / Pending, Provided | Provided (when CA = Applied) → +1 additionality |
+
+A **Corresponding Adjustment** means the host country has formally transferred the mitigation outcome, preventing double-counting against both the host country's NDC and the buyer's corporate claim. Setting this to *Applied* and providing a LoA maximises the credit's additionality score.
+
 The portal will show a **live quality score preview** as you fill in the fields.
 
 ### 6 — Set Token Distribution
@@ -130,6 +141,8 @@ You can adjust these percentages — they must sum to 100%.
 ### 7 — Select SDG Goals
 
 Select the UN Sustainable Development Goals your project contributes to. These are indexed on-chain and used by buyers to filter by impact alignment.
+
+Each SDG selected adds **+1 to the co-benefits dimension** of your quality score, capped at +4. This bonus stacks on top of any sub-type co-benefits bonus.
 
 ### 8 — Submit
 

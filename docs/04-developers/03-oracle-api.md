@@ -466,23 +466,86 @@ Returns the quality score stored on-chain for a specific certificate.
 
 ## Marketplace
 
+The Marketplace API surfaces data from `RWAMarketplace.sol`. All endpoints are DB-first with on-chain RPC fallback. Listing objects include certificate metadata joined from the most recent approved certificate for the listing's asset type.
+
 ### `GET /api/marketplace/listings`
 
-List active marketplace listings.
+List marketplace listings with optional filtering and sorting.
 
 **Query parameters:**
 
 | Parameter | Type | Description |
 |---|---|---|
 | `network` | string | `fuji`, `sepolia`, or `xrpl` |
-| `assetType` | number | Filter by asset type ID |
-| `status` | string | `active`, `sold`, `cancelled` |
+| `asset_type` | number | Filter by asset type ID (0–9) |
+| `status` | number | `0`=ACTIVE, `1`=SOLD, `2`=CANCELLED, `3`=EXPIRED |
+| `seller` | string | Filter by seller address |
+| `q` | string | Free-text search (project name, country, methodology) |
+| `sort_by` | string | `listing_id` \| `price_per_token` \| `amount_remaining` \| `created_at` |
+| `sort_dir` | string | `asc` \| `desc` |
+| `limit` / `offset` | number | Pagination (default limit: 20) |
+
+**Response includes these certificate-derived fields** (null when no approved certificate exists):
+
+`certificateSerial`, `projectId`, `projectName`, `vintage`, `qualityScore`, `unit`, `methodology`, `country`, `subType`, `sdgGoals`, `projectImageUrl`, `latitude`, `longitude`, `correspondingAdjustment`, `creditMechanism`
+
+---
+
+### `GET /api/marketplace/listings/:listingId`
+
+Get a single listing by its on-chain `listingId`. Returns the same object shape as the list endpoint.
 
 ---
 
 ### `GET /api/marketplace/trades`
 
 List completed trades.
+
+**Query parameters:**
+
+| Parameter | Type | Description |
+|---|---|---|
+| `network` | string | Network |
+| `buyer` | string | Filter by buyer address |
+| `seller` | string | Filter by seller address |
+| `aggregator` | string | Filter by aggregator address |
+| `listing_id` | number | Filter all trades for a specific listing |
+
+---
+
+### `GET /api/marketplace/trades/:tradeId`
+
+Get a single trade by ID.
+
+---
+
+### `GET /api/marketplace/stats`
+
+Returns aggregated marketplace statistics: active/total listing counts, total trade count, total volume, platform fees, aggregator fees, and a breakdown by asset type.
+
+---
+
+### `GET /api/marketplace/user/:address/listings`
+
+All listings where `:address` is the seller.
+
+---
+
+### `GET /api/marketplace/user/:address/trades`
+
+All trades where `:address` is the buyer or seller.
+
+---
+
+### `GET /api/marketplace/aggregators`
+
+List all registered aggregator addresses with royalty rates and volume stats.
+
+---
+
+### `GET /api/marketplace/aggregators/:address`
+
+Single aggregator details.
 
 ---
 
@@ -503,6 +566,20 @@ List methodologies available for a registry (e.g. VCS, CCB, SD VISta for Verra).
 ### `GET /api/registry-standards/quality-parameters/:registryId/:assetTypeId`
 
 Returns the quality parameter definitions and scoring rules for a specific registry + asset type combination.
+
+---
+
+### `GET /api/registry-standards/sub-types`
+
+Returns the available sub-types for a given asset type. Used by the `/registry` form Sub-Type dropdown.
+
+**Query parameters:**
+
+| Parameter | Type | Description |
+|---|---|---|
+| `asset_type_code` | number | Asset type ID (0–9, 255) |
+
+Sub-types with `affectsScoring: true` modify the Oracle quality score. See [Quality Scoring](./quality-scoring) for the full bonus table.
 
 ---
 
@@ -536,9 +613,15 @@ Returns all 17 UN Sustainable Development Goals with names, short names, officia
 
 ---
 
-### `GET /api/sdg/mappings/:serialNumber`
+### `GET /api/sdg/certificate/:serialNumber`
 
 Returns the SDG mappings for a specific certificate — which SDGs the project contributes to.
+
+---
+
+### `GET /api/sdg/stats`
+
+Returns per-SDG adoption counts across all approved certificates, ordered by adoption rate.
 
 ---
 

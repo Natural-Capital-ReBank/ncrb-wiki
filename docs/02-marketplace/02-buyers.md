@@ -59,7 +59,7 @@ Go to the **Trading** section of the NCRB dApp to see all active listings.
 
 ## Understanding a Listing
 
-Each listing shows:
+Each listing card shows:
 
 | Field | Description |
 |---|---|
@@ -71,8 +71,17 @@ Each listing shows:
 | **Country** | Where the project is located |
 | **Quantity Available** | How many units are for sale |
 | **Price per Unit** | In USDC |
-| **SDG Goals** | UN SDGs the project contributes to |
+| **SDG Goals** | Hover the SDG chip to see a colored popup of all aligned UN SDG tiles |
+| **CA badge** | Green "CA" badge — the credit has a Corresponding Adjustment applied (Paris Agreement Article 6.4 double-counting prevention) |
+| **Credit mechanism pill** | "Art. 6.4", "CORSIA", or "CDM→6.4" — indicates the compliance mechanism beyond standard voluntary markets |
 | **IPFS Document** | Link to the original verified certificate |
+
+### Listing Detail Page
+
+Click any listing card to open the full detail page, which includes:
+
+- **Overview tab** — project description, compliance badges, SDG alignment, coordinates, certificate serial, and a **Persistence Curve** chart showing the projected 100-year carbon permanence trajectory with actual retirement events plotted
+- **Activity tab** — full trade history for the listing (buyer, amount, price, timestamp)
 
 ---
 
