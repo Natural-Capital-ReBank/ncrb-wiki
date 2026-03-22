@@ -87,6 +87,9 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          // Treat all .md and .mdx files as MDX so <YouTubeEmbed /> and other
+          // React components work without renaming files to .mdx
+          format: 'mdx',
         },
         sitemap: {
           changefreq: 'weekly',

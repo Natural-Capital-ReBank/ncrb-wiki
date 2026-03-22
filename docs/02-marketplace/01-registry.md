@@ -52,6 +52,8 @@ Certificate available on marketplace
 
 ## Submitting a Certificate
 
+<YouTubeEmbed id="EyUFFUnNVA0T28CQ" title="Registry - Submit Certificate" />
+
 ### 1 — Connect Your Wallet
 
 1. Go to the **Registry Portal** in the NCRB dApp
