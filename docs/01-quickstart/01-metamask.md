@@ -7,8 +7,6 @@ title: Install MetaMask
 
 MetaMask is a browser extension and mobile app that acts as your Web3 wallet. You need it to connect to the NCRB platform, hold tokens, and sign transactions.
 
-<YouTubeEmbed id="PLACEHOLDER_METAMASK" title="Install MetaMask and connect to NCRB" />
-
 ---
 
 ## Step 1 — Install the Extension
