@@ -41,28 +41,15 @@ To participate in governance you need:
 
 When a registry partner submits a certificate, the Oracle API scores it and — if it passes the minimum 50-point threshold — creates a **mint proposal** in the `MultiSigGovernance` contract. Governance members then vote to approve or reject it.
 
-```
-Certificate submitted by registry
-        │
-        ▼
-Oracle API scores certificate (≥ 50 required)
-        │
-        ▼
-Mint proposal created on-chain
-        │
-        ▼
-Governance members notified (7-day voting window)
-        │
-   ┌────┴────────────────────────────┐
-   │ Members vote Approve or Reject  │
-   │ (3-of-5 approval required)      │
-   └────┬──────────────────┬─────────┘
-        │                  │
-   3+ Approve          Majority Reject
-   before expiry         or 7-day timeout
-        │                  │
-   Tokens minted        Proposal expires —
-   and distributed      no tokens minted
+```mermaid
+flowchart TD
+    A([Certificate submitted by registry]) --> B{Oracle API scores certificate}
+    B -->|Score ≥ 50| C[Mint proposal created on-chain]
+    B -->|Score < 50| R([Rejected — below threshold])
+    C --> D[Governance members notified\n7-day voting window]
+    D --> E{Members vote\n3-of-5 approval required}
+    E -->|3+ Approve before expiry| F([Tokens minted and distributed])
+    E -->|Majority Reject or 7-day timeout| G([Proposal expires — no tokens minted])
 ```
 
 ---
