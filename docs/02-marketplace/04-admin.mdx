@@ -52,24 +52,14 @@ Use the **network selector** at the top to switch between Fuji, Sepolia, and XRP
 
 ## Account Lifecycle
 
-```
-(Not registered)
-       │
-       │  Add account
-       ▼
-   INACTIVE
-       │
-       │  Activate
-       ▼
-    ACTIVE  ◄──────────────┐
-       │                   │ Reactivate
-       │  Suspend          │
-       ▼                   │
-  SUSPENDED ───────────────┘
-       │
-       │  Remove
-       ▼
-   REMOVED
+```mermaid
+stateDiagram-v2
+    [*] --> INACTIVE : Add account
+    INACTIVE --> ACTIVE : Activate
+    ACTIVE --> SUSPENDED : Suspend
+    SUSPENDED --> ACTIVE : Reactivate
+    SUSPENDED --> REMOVED : Remove
+    REMOVED --> [*]
 ```
 
 | Status | Can transact? | Can list/buy? |

@@ -42,28 +42,15 @@ Before you can submit certificates you need:
 
 ## The Certificate Lifecycle
 
-```
-Registry submits certificate
-        │
-        ▼
-Oracle API computes quality score (0–100)
-        │
-        ▼
-Certificate enters Governance queue
-        │
-     ┌──┴──────────────────┐
-     │ 3-of-5 governance   │
-     │ members vote        │
-     └──┬──────────────────┘
-        │
-   ┌────┴────┐
-Approved   Rejected / Expired
-   │
-   ▼
-Tokens minted and distributed
-   │
-   ▼
-Certificate available on marketplace
+```mermaid
+flowchart TD
+    A([Registry submits certificate]) --> B[Oracle API computes quality score 0–100]
+    B --> C{3-of-5 Registry\nmembers vote}
+    C --> D[Certificate enters Governance queue]
+    D --> E{3-of-5 Governance\nmembers vote}
+    E --> F([Tokens minted and distributed])
+    E --> G([Rejected / Expired])
+    F --> H([Certificate available on marketplace])
 ```
 
 ---

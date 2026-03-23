@@ -13,6 +13,12 @@ const config: Config = {
     v4: true,
   },
 
+  themes: ['@docusaurus/theme-mermaid'],
+
+  markdown: {
+    mermaid: true,
+  },
+
   url: 'https://wiki.ncrb.world',
   baseUrl: '/',
 
