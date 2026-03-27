@@ -1,7 +1,6 @@
 ---
 id: whitepapers
 title: Whitepapers
-sidebar_label: Overview
 ---
 
 # NCRB Whitepapers
