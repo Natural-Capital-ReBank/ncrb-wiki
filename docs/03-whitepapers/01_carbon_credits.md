@@ -122,7 +122,7 @@ A 30-year-old teak tree sequesters approximately **1.7 tCO₂e** using this meth
 | 75–84 | AA / High | Mostly CCP-aligned, Sylvera A-/BBB, BeZero A/BBB | High-quality compliance & voluntary |
 | 65–74 | A / Standard | Partial CCP alignment, Sylvera BB/B, BeZero BB/B | Tradable with risk discount |
 | 50–64 | BBB / Review | Below CCP expectations, Sylvera/BeZero CCC | Limited buyers, price pressure |
-| <50 | Not Eligible | Fails CCP principles | High integrity risk |
+| &lt;50 | Not Eligible | Fails CCP principles | High integrity risk |
 
 ---
 

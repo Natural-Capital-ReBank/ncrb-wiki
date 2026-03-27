@@ -109,7 +109,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | Ocean-Bound Plastic with verified social co-benefits | High-quality voluntary market |
 | 65–74 | A / Standard | Plastic Neutral with verified collection/processing | Tradable with risk discount |
 | 50–64 | BBB / Review | Basic recycling credits, limited documentation | Limited buyers, price pressure |
-| <50 | Not Eligible | Unverified claims | High integrity risk |
+| &lt;50 | Not Eligible | Unverified claims | High integrity risk |
 
 ---
 

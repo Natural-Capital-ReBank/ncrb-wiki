@@ -75,7 +75,7 @@ Phosphorus credit quality is determined by the **delivery ratio** — a measure 
 | **High Delivery** | 0.8–1.0 (near bay) | Municipal WWT, point source | $30–$75/kg P | ✅ Eligible |
 | **Medium Delivery** | 0.5–0.8 (mid-watershed) | Watershed management, BMPs | $15–$40/kg P | ✅ Eligible |
 | **Standard Delivery** | 0.3–0.5 (upstream) | Agricultural conservation | $8–$25/kg P | ✅ Eligible |
-| **Low Delivery** | <0.3 (far upstream) | Upland practices | $5–$15/kg P | ⚠️ Trading Ratio Applied |
+| **Low Delivery** | &lt;0.3 (far upstream) | Upland practices | $5–$15/kg P | ⚠️ Trading Ratio Applied |
 
 ---
 
@@ -112,7 +112,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | Medium-delivery, state-certified watershed BMPs | High-quality compliance & voluntary |
 | 65–74 | A / Standard | Standard-delivery, agricultural conservation | Tradable with delivery ratio applied |
 | 50–64 | BBB / Review | Low-delivery, limited verification | Trading ratio required, price pressure |
-| <50 | Not Eligible | Fails delivery or certification requirements | High integrity risk |
+| &lt;50 | Not Eligible | Fails delivery or certification requirements | High integrity risk |
 
 ---
 

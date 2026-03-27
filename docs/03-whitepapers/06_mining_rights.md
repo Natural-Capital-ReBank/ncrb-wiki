@@ -118,7 +118,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | Probable Reserves, strong technical report | High-quality mining investment |
 | 65–74 | A / Standard | Measured Resources, economic potential | Tradable with reserve discount |
 | 50–64 | BBB / Review | Indicated Resources, pre-economic | Requires additional due diligence |
-| <50 | Not Eligible | Inferred Resources or non-compliant reports | Not eligible for tokenization |
+| &lt;50 | Not Eligible | Inferred Resources or non-compliant reports | Not eligible for tokenization |
 
 ---
 
