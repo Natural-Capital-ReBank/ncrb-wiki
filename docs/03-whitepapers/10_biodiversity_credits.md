@@ -115,7 +115,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | D4-D5 habitats, verified BNG, 30+ year covenant | High-quality biodiversity investment |
 | 65–74 | A / Standard | D3-D4 habitats, BNG verified, standard covenant | Tradable for voluntary biodiversity claims |
 | 50–64 | BBB / Review | D1-D2 habitats, limited verification | Requires additional due diligence |
-| <50 | Not Eligible | Below minimum distinctiveness or short covenant | Not eligible for tokenization |
+| &lt;50 | Not Eligible | Below minimum distinctiveness or short covenant | Not eligible for tokenization |
 
 ---
 

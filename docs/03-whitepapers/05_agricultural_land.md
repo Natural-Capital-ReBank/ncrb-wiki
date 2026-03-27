@@ -119,7 +119,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | Class I–II, verified productivity | High-quality farmland investment |
 | 65–74 | A / Standard | Class II–III, good documentation | Tradable with condition review |
 | 50–64 | BBB / Review | Class III–IV, some limitations | Requires additional due diligence |
-| <50 | Not Eligible | Class V–VIII or title issues | Not eligible for tokenization |
+| &lt;50 | Not Eligible | Class V–VIII or title issues | Not eligible for tokenization |
 
 ---
 
