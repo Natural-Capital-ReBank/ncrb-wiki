@@ -114,7 +114,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | Class I/II, registry-certified, current vintage | High-quality compliance & voluntary |
 | 65–74 | A / Standard | Voluntary market RECs, Green-e certified | Tradable for corporate sustainability claims |
 | 50–64 | BBB / Review | Unbundled, older vintage, limited documentation | Price pressure, limited buyers |
-| <50 | Not Eligible | Non-certified or expired vintage | Not eligible for tokenization |
+| &lt;50 | Not Eligible | Non-certified or expired vintage | Not eligible for tokenization |
 
 ---
 

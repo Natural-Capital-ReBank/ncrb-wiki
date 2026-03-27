@@ -324,7 +324,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | Intermediate rights or Act4Water / Hypercube-certified reuse credits |
 | 65–74 | A / Standard | Junior rights (good documentation) or voluntary credits with adequate MRV |
 | 50–64 | BBB / Review | Junior rights with curtailment history or credits with incomplete MRV |
-| <50 | Not Eligible | Forfeiture history, non-transferable rights, or uncertified water claims |
+| &lt;50 | Not Eligible | Forfeiture history, non-transferable rights, or uncertified water claims |
 
 ---
 

@@ -114,7 +114,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | 75–84 | AA / High | FSC Mix/Controlled, SFI certified | High-quality sustainable forestry |
 | 65–74 | A / Standard | ATFS certified, basic documentation | Tradable with sustainability review |
 | 50–64 | BBB / Review | Limited certification, older inventory | Requires additional due diligence |
-| <50 | Not Eligible | Non-certified or unsustainable practices | Not eligible for tokenization |
+| &lt;50 | Not Eligible | Non-certified or unsustainable practices | Not eligible for tokenization |
 
 ### 5.2 Biomass Carbon Measurement Methodology
 
