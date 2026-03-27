@@ -141,7 +141,7 @@ NCRB tracks the following impact metrics for agricultural land:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified agricultural land title/certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-AGLAND-{ID}
+**Symbol:** NC-AGLAND`{ID}`
 
 ### 7.1 Distribution
 

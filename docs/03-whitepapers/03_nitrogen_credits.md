@@ -134,7 +134,7 @@ NCRB tracks the following impact metrics for nitrogen credits:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified nitrogen credit certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-NITROGEN-{ID}
+**Symbol:** NC-NITROGEN`{ID}`
 
 ### 7.1 Distribution
 

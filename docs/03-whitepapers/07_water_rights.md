@@ -346,7 +346,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified water rights certificate or water credit volume
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-WATER-{ID}
+**Symbol:** NC-WATER`{ID}`
 
 ### 8.1 Distribution
 

@@ -146,7 +146,7 @@ NCRB Carbon Credits are designed for institutional acceptance:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified carbon credit certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-CARBON-{ID}
+**Symbol:** NC-CARBON`{ID}`
 
 ### 7.1 Distribution
 

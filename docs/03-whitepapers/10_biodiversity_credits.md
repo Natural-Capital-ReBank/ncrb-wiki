@@ -151,7 +151,7 @@ NCRB tracks the following impact metrics for biodiversity credits:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified biodiversity credit certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-BIO-{ID}
+**Symbol:** NC-BIO`{ID}`
 
 ### 8.1 Distribution
 

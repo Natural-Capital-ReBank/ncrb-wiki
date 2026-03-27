@@ -200,7 +200,7 @@ NCRB tracks the following impact metrics for forestry rights:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified forestry rights certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-FORESTRY-{ID}
+**Symbol:** NC-FORESTRY`{ID}`
 
 ### 8.1 Distribution
 

@@ -149,7 +149,7 @@ NCRB tracks the following impact metrics for RECs:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified REC certificate (1 token = 1 MWh)
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-REC-{ID}
+**Symbol:** NC-REC`{ID}`
 
 ### 8.1 Distribution
 

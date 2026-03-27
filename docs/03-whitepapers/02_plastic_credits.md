@@ -131,7 +131,7 @@ NCRB tracks the following impact metrics for plastic credits:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified plastic credit certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-PLASTIC-{ID}
+**Symbol:** NC-PLASTIC`{ID}`
 
 ### 7.1 Distribution
 
