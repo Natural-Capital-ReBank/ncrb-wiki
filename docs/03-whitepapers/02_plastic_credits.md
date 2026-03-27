@@ -156,7 +156,7 @@ NCRB tracks the following impact metrics for plastic credits:
 | NCRB Treasury | 1.0% of asset |
 
 ### 7.3 BaaS Service
-- BaaS licensing: $50K–$200K for institutional partners
+- BaaS Licensing: Institutional rates available for quotation
 
 ---
 

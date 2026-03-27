@@ -171,7 +171,7 @@ NCRB Carbon Credits are designed for institutional acceptance:
 | NCRB Treasury | 1.0% of asset |
 
 ### 7.3 BaaS Service
-- BaaS licensing: $50K–$200K for institutional partners
+- BaaS Licensing: Institutional rates available for quotation
 
 ---
 

@@ -176,7 +176,7 @@ NCRB tracks the following impact metrics for biodiversity credits:
 | NCRB Treasury | 1.0% of asset |
 
 ### 8.3 BaaS Service
-- BaaS licensing: $50K–$200K for institutional partners
+- BaaS Licensing: Institutional rates available for quotation
 
 ---
 

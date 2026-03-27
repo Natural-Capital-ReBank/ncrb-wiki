@@ -371,7 +371,7 @@ NCRB employs a programmatic quality scoring system (0–100) across six weighted
 | NCRB Treasury | 1.0% of asset |
 
 ### 8.3 BaaS Service
-- BaaS licensing: $50K–$200K for institutional partners
+- BaaS Licensing: Institutional rates available for quotation
 
 ---
 
