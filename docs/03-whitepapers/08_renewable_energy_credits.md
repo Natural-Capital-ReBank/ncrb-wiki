@@ -1,3 +1,8 @@
+---
+id: renewable_energy_credits
+title: Renewable Energy Credits
+---
+
 # NCRB Renewable Energy Credits (RECs) Whitepaper
 
 **Version 1.3 | February 2026**

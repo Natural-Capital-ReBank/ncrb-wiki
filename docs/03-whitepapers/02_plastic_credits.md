@@ -1,3 +1,8 @@
+---
+id: plastic_credits
+title: Plastic Credits
+---
+
 # NCRB Plastic Credits Whitepaper
 
 **Version 1.3 | February 2026**

@@ -1,3 +1,8 @@
+---
+id: water_rights
+title: Water Rights & Credits
+---
+
 # NCRB Water Rights & Water Credits Whitepaper
 
 **Version 1.4 | March 2026**

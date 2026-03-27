@@ -1,3 +1,8 @@
+---
+id: nitrogen_credits
+title: Nitrogen Credits
+---
+
 # NCRB Nitrogen Credits Whitepaper
 
 **Version 1.3 | February 2026**

@@ -1,3 +1,8 @@
+---
+id: agricultural_land
+title: Agricultural Land
+---
+
 # NCRB Agricultural Land Whitepaper
 
 **Version 1.3 | February 2026**

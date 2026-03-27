@@ -1,3 +1,8 @@
+---
+id: forestry_rights
+title: Forestry Rights
+---
+
 # NCRB Forestry Rights Whitepaper
 
 **Version 1.3 | February 2026**
