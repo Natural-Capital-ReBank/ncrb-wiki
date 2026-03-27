@@ -98,6 +98,7 @@ Phosphorus credits receive a programmatic quality score (0–100) across six wei
 
 ## What fees apply?
 
-- **Trading fee:** 2.5% per transaction
-- **AUM fee:** 1.5% annually
-- **BaaS licensing:** $50,000–$200,000 for registry partners
+- **Trading fees:** 2.5% of transaction value
+- **Insurance fees:** 1.5% annually
+- **NCRB Treasury:** 1.0% of asset
+- **BaaS Licensing:** Institutional rates available for quotation
