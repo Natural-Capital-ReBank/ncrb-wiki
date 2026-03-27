@@ -9,14 +9,12 @@ title: Renewable Energy Credits
 
 ---
 
-**World Headquarters:** 12 Manomet Point Rd, Suite 293, Manomet, MA 02345-0293, USA | T: +1-781-266-2004
-**Americas & Europe:** 32357 Marshall Road, Abbotsford, BC V2T 1A6, Canada | T: +1-604-809-4334
-**Asia-Pacific:** House 26, Road 7, Block G, Banani, Dhaka 1213, Bangladesh | T: +880-1703-727060
+**World Headquarters:** 12 Manomet Point Rd, Suite 293, Manomet, MA 02345-0293, USA | T: +1-781-266-2004<br>
+**Americas & Europe:** 32357 Marshall Road, Abbotsford, BC V2T 1A6, Canada | T: +1-604-809-4334<br>
+**Asia-Pacific:** House 26, Road 7, Block G, Banani, Dhaka 1213, Bangladesh | T: +880-1703-727060<br>
 
-**Website:** https://ncrb.world | **Email:** info@ncrb.world | **Twitter:** @NCRBPlatform
-**LinkedIn:** https://linkedin.com/company/natural-capital-rebank
-
-© 2026 Natural Capital ReBank. All rights reserved.
+**Website:** https://ncrb.world | **Email:** info@ncrb.world | **Twitter:** @NCRBPlatform<br>
+**LinkedIn:** https://linkedin.com/company/natural-capital-rebank<br>
 
 ---
 
