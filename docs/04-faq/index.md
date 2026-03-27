@@ -46,9 +46,10 @@ Every asset submitted to NCRB receives a programmatic quality score from 0 to 10
 
 ### What are the platform fees?
 
-- **Trading fee:** 2.5% per marketplace transaction
-- **AUM fee:** 1.5% annually on held tokens
-- **BaaS licensing:** $50,000–$200,000 for registry partners integrating via Blockchain-as-a-Service
+- **Trading fees:** 2.5% of transaction value
+- **Insurance fees:** 1.5% annually
+- **NCRB Treasury:** 1.0% of asset
+- **BaaS Licensing:** Institutional rates available for quotation
 
 ### How does token revenue get distributed?
 

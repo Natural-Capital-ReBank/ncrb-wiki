@@ -89,9 +89,10 @@ Scores are benchmarked against **Sylvera** and **BeZero** institutional ratings 
 
 ## What fees apply?
 
-- **Trading fee:** 2.5% per transaction on the marketplace
-- **AUM fee:** 1.5% annually on held tokens
-- **BaaS licensing:** $50,000–$200,000 (for registry partners using Blockchain-as-a-Service)
+- **Trading fees:** 2.5% of transaction value
+- **Insurance fees:** 1.5% annually
+- **NCRB Treasury:** 1.0% of asset
+- **BaaS Licensing:** Institutional rates available for quotation
 
 ---
 
