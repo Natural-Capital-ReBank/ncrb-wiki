@@ -140,7 +140,7 @@ NCRB tracks the following impact metrics for mining rights:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified mining rights certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-MINING-{ID}
+**Symbol:** NC-MINING`{ID}`
 
 ### 7.1 Distribution
 

@@ -134,7 +134,7 @@ NCRB tracks the following impact metrics for phosphorus credits:
 **Token Type:** ERC-7943 uRWA (per asset certificate)
 **Backing:** 1:1 with verified phosphorus credit certificate
 **Supply:** Minted on governance approval, burned on redemption
-**Symbol:** NC-PHOSPHORUS-{ID}
+**Symbol:** NC-PHOSPHORUS`{ID}`
 
 ### 7.1 Distribution
 
