@@ -81,7 +81,7 @@ Mining rights quality follows internationally recognized reserve classification 
 
 - **High grade (>10 g/t):** Premium 200–400%
 - **Medium grade (3–10 g/t):** Standard pricing
-- **Low grade (<3 g/t):** Discount 30–50%
+- **Low grade (&lt;3 g/t):** Discount 30–50%
 
 ---
 
