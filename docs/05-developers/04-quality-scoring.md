@@ -68,6 +68,77 @@ The minimum score for tokenization is **50 (BBB)**.
 
 ---
 
+## Sub-Type Scoring Bonuses
+
+When a certificate's `subType` field (stored in `assetMetadata`) maps to a known sub-type with `affectsScoring: true`, bonus points are added to the raw dimension scores before the composite is calculated. Available sub-types are served by `GET /api/registry-standards/sub-types?asset_type_code={id}`.
+
+**Carbon credits (assetType 0):**
+
+| Sub-type | Additionality bonus | Co-benefits bonus |
+|---|---|---|
+| `compliance` | +3 | — |
+| `removal_dac` | +5 | +3 |
+| `removal_beccs` | +4 | +2 |
+| `removal_enhanced_weathering` | +3 | — |
+
+**Other asset types:**
+
+| Asset | Sub-type | Dimension | Bonus |
+|---|---|---|---|
+| Plastic | `ocean_bound` | Co-benefits | +4 |
+| Nitrogen | `nitrous_oxide` | Additionality | +3 |
+| Agricultural | `regenerative` | Additionality | +3 |
+| Phosphorus | `watershed` | Co-benefits | +3 |
+| Water | `environmental_flow` | Co-benefits | +4 |
+| Mining | `reclaimed` | Co-benefits | +4 |
+| Forestry | `natural_forest`, `agroforestry` | Co-benefits | +3 |
+| Biodiversity | `wetland` | Co-benefits | +4 |
+| Biodiversity | `coastal_marine` | Co-benefits | +3 |
+
+---
+
+## Paris Agreement Article 6.4 Bonuses
+
+For carbon credits (`assetType 0`), three fields in `assetMetadata` trigger additional additionality bonuses. These are set during asset registration and stored as part of the on-chain `assetMetadata` JSON.
+
+| Field | Value | Additionality bonus |
+|---|---|---|
+| `creditMechanism` | `article_6_4` | +5 |
+| `creditMechanism` | `corsia` | +3 |
+| `correspondingAdjustment` | `applied` | +2 |
+| `correspondingAdjustment` + `loaStatus` | `applied` + `provided` | +1 (stacked on top of the CA bonus) |
+
+**`creditMechanism` values:**
+
+| Value | Description |
+|---|---|
+| `vcm` | Voluntary Carbon Market (no bonus) |
+| `article_6_4` | UN Paris Agreement Article 6.4 mechanism |
+| `corsia` | ICAO CORSIA aviation offsetting |
+| `cdm_transition` | CDM credits transitioning to Article 6.4 |
+
+**`correspondingAdjustment`** — `applied` means the host country has formally transferred the mitigation outcome to the buyer's NDC, preventing double-counting. This is the key integrity requirement for Article 6.4 compliance.
+
+**`loaStatus`** — `provided` means a Letter of Authorisation from the host country government is on file.
+
+---
+
+## SDG Co-Benefits Bonus
+
+For all asset types, each UN SDG goal listed in `sdgGoals` adds +1 to the co-benefits dimension score, capped at +4. This bonus stacks on top of any sub-type co-benefits bonus.
+
+| SDG goals aligned | Co-benefits bonus |
+|---|---|
+| 0 | +0 |
+| 1 | +1 |
+| 2 | +2 |
+| 3 | +3 |
+| 4 or more | +4 (cap) |
+
+SDG goals are stored as an integer array in `assetMetadata.sdgGoals` (e.g. `[13, 14, 15]`).
+
+---
+
 ## Social Impact Premium
 
 The Social Impact dimension (12%) reflects co-benefits that command price premiums from institutional buyers. Corporate buyers including Microsoft, Google, and Meta explicitly require social impact verification in procurement criteria.
@@ -145,51 +216,33 @@ The weights stored on-chain in `QualityAssessment` are the authoritative source.
 
 ## Example: Assessing a Carbon Credit
 
-**POST /api/quality/assess**
+Quality assessment is triggered automatically when the Oracle processes a `CertificateSubmitted` event. The certificate's `assetMetadata` JSON (stored on-chain) provides the inputs.
+
+**Example `assetMetadata` for a high-scoring Article 6.4 carbon credit:**
 
 ```json
 {
-  "serialNumber": "VCS-2024-001-001",
-  "assetType": 0,
-  "network": "fuji",
-  "parameters": {
-    "vintage": 2022,
-    "methodology": "VM0015",
-    "registry": "verra",
-    "sylveraRating": "A",
-    "additionality": "financial",
-    "permanenceGuarantee": "buffer_pool",
-    "certificationLevel": "CCP_approved",
-    "cobenefits": ["CCB_GOLD", "SDG_13", "SDG_15"],
-    "indigenousEngagement": true
-  }
+  "methodology": "VM0015",
+  "vintage": 2023,
+  "subType": "removal_dac",
+  "creditMechanism": "article_6_4",
+  "correspondingAdjustment": "applied",
+  "loaStatus": "provided",
+  "sdgGoals": [7, 13, 14, 15],
+  "projectName": "Bangladesh Mangrove Reforestation",
+  "country": "BD"
 }
 ```
 
-**Response:**
+**Scoring result for this certificate:**
 
-```json
-{
-  "success": true,
-  "data": {
-    "serialNumber": "VCS-2024-001-001",
-    "score": 84,
-    "band": "AA",
-    "dimensions": {
-      "technicalQuality": 85,
-      "additionality": 80,
-      "permanence": 88,
-      "certificationLevel": 90,
-      "socialImpact": 95,
-      "vintageCondition": 60
-    },
-    "priceRange": {
-      "min": 10,
-      "max": 20,
-      "unit": "USD/tCO2e",
-      "premiumApplied": true,
-      "premiumReason": "CCB Gold + Indigenous engagement"
-    }
-  }
-}
-```
+| Dimension | Base score | Bonus | Final |
+|---|---|---|---|
+| Technical Quality | — | — | ~80 |
+| Additionality | ~60 | +5 (Art. 6.4) +2 (CA) +1 (LoA) = **+8** | ~68 |
+| Co-benefits | ~60 | +3 (removal_dac sub-type) +4 (4 SDGs) = **+7** | ~67 |
+| Certification Level | — | — | ~75 |
+| Social Impact | — | — | ~80 |
+| Vintage/Condition | — | — | ~72 |
+
+> Bonus points are added to the raw dimension score (capped at 100 per dimension) before the weighted composite is calculated.

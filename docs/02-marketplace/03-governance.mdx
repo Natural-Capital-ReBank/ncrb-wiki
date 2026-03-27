@@ -7,6 +7,24 @@ title: Governance Guide
 
 Governance members are the trusted signatories responsible for reviewing and approving certificate submissions before RWA tokens are minted. NCRB uses a **3-of-5 multi-signature** model — at least 3 out of 5 governance members must approve a proposal for tokens to be minted.
 
+<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"1rem",margin:"1.5rem 0"}}>
+  <div style={{background:"linear-gradient(135deg,#1e1b4b,#1e3a5f)",borderRadius:"12px",padding:"1.5rem",border:"1px solid #4338ca"}}>
+    <div style={{fontSize:"2rem",marginBottom:"0.75rem"}}>🔐</div>
+    <div style={{color:"#c7d2fe",fontWeight:"700",marginBottom:"0.5rem"}}>3-of-5 Multi-Sig</div>
+    <div style={{color:"#a5b4fc",fontSize:"0.875rem"}}>Requires majority approval from 5 governance members to mint any RWA tokens</div>
+  </div>
+  <div style={{background:"linear-gradient(135deg,#1e3a5f,#1e1b4b)",borderRadius:"12px",padding:"1.5rem",border:"1px solid #1d4ed8"}}>
+    <div style={{fontSize:"2rem",marginBottom:"0.75rem"}}>⏱️</div>
+    <div style={{color:"#bfdbfe",fontWeight:"700",marginBottom:"0.5rem"}}>7-Day Window</div>
+    <div style={{color:"#93c5fd",fontSize:"0.875rem"}}>Proposals must reach 3 approvals within 7 days or they expire automatically</div>
+  </div>
+  <div style={{background:"linear-gradient(135deg,#312e81,#1e3a5f)",borderRadius:"12px",padding:"1.5rem",border:"1px solid #6366f1"}}>
+    <div style={{fontSize:"2rem",marginBottom:"0.75rem"}}>📊</div>
+    <div style={{color:"#e0e7ff",fontWeight:"700",marginBottom:"0.5rem"}}>Transparent Voting</div>
+    <div style={{color:"#c7d2fe",fontSize:"0.875rem"}}>All votes are recorded on-chain for a permanent, publicly verifiable audit trail</div>
+  </div>
+</div>
+
 ---
 
 ## Prerequisites
@@ -23,28 +41,15 @@ To participate in governance you need:
 
 When a registry partner submits a certificate, the Oracle API scores it and — if it passes the minimum 50-point threshold — creates a **mint proposal** in the `MultiSigGovernance` contract. Governance members then vote to approve or reject it.
 
-```
-Certificate submitted by registry
-        │
-        ▼
-Oracle API scores certificate (≥ 50 required)
-        │
-        ▼
-Mint proposal created on-chain
-        │
-        ▼
-Governance members notified (7-day voting window)
-        │
-   ┌────┴────────────────────────────┐
-   │ Members vote Approve or Reject  │
-   │ (3-of-5 approval required)      │
-   └────┬──────────────────┬─────────┘
-        │                  │
-   3+ Approve          Majority Reject
-   before expiry         or 7-day timeout
-        │                  │
-   Tokens minted        Proposal expires —
-   and distributed      no tokens minted
+```mermaid
+flowchart TD
+    A([Certificate submitted by registry]) --> B{Oracle API scores certificate}
+    B -->|Score ≥ 50| C[Mint proposal created on-chain]
+    B -->|Score < 50| R([Rejected — below threshold])
+    C --> D[Governance members notified\n7-day voting window]
+    D --> E{Members vote\n3-of-5 approval required}
+    E -->|3+ Approve before expiry| F([Tokens minted and distributed])
+    E -->|Majority Reject or 7-day timeout| G([Proposal expires — no tokens minted])
 ```
 
 ---
@@ -95,6 +100,8 @@ Each proposal card shows:
 ---
 
 ## Casting Your Vote
+
+<YouTubeEmbed id="PLACEHOLDER_GOVERNANCE" title="How to Vote on Governance Proposals" />
 
 ### Approve
 

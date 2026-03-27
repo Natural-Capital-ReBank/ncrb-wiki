@@ -7,6 +7,24 @@ title: Admin Guide
 
 Admins manage platform participants — registering accounts, assigning roles, and maintaining the integrity of the account registry. All admin operations are executed on-chain via the `AccountManager` contract.
 
+<div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:'1rem',margin:'1.5rem 0'}}>
+  <div style={{background:'linear-gradient(135deg,#312e81,#1e3a5f)',borderRadius:'12px',padding:'1.5rem',border:'1px solid #4338ca'}}>
+    <div style={{fontSize:'2rem',marginBottom:'0.75rem'}}>🔑</div>
+    <div style={{color:'#c7d2fe',fontWeight:'700',marginBottom:'0.5rem'}}>Account Management</div>
+    <div style={{color:'#a5b4fc',fontSize:'0.875rem'}}>Add, activate, suspend, and remove platform participants on any network</div>
+  </div>
+  <div style={{background:'linear-gradient(135deg,#1e3a5f,#0f4c3a)',borderRadius:'12px',padding:'1.5rem',border:'1px solid #1d4ed8'}}>
+    <div style={{fontSize:'2rem',marginBottom:'0.75rem'}}>🛡️</div>
+    <div style={{color:'#bfdbfe',fontWeight:'700',marginBottom:'0.5rem'}}>Role Assignment</div>
+    <div style={{color:'#93c5fd',fontSize:'0.875rem'}}>Grant precise permissions — Registry, Governance, Compliance, Oracle, and more</div>
+  </div>
+  <div style={{background:'linear-gradient(135deg,#0f4c3a,#312e81)',borderRadius:'12px',padding:'1.5rem',border:'1px solid #059669'}}>
+    <div style={{fontSize:'2rem',marginBottom:'0.75rem'}}>🔒</div>
+    <div style={{color:'#a7f3d0',fontWeight:'700',marginBottom:'0.5rem'}}>On-Chain Audit</div>
+    <div style={{color:'#6ee7b7',fontSize:'0.875rem'}}>Every admin action is permanently recorded on-chain and auditable via block explorers</div>
+  </div>
+</div>
+
 ---
 
 ## Prerequisites
@@ -34,24 +52,14 @@ Use the **network selector** at the top to switch between Fuji, Sepolia, and XRP
 
 ## Account Lifecycle
 
-```
-(Not registered)
-       │
-       │  Add account
-       ▼
-   INACTIVE
-       │
-       │  Activate
-       ▼
-    ACTIVE  ◄──────────────┐
-       │                   │ Reactivate
-       │  Suspend          │
-       ▼                   │
-  SUSPENDED ───────────────┘
-       │
-       │  Remove
-       ▼
-   REMOVED
+```mermaid
+stateDiagram-v2
+    [*] --> INACTIVE : Add account
+    INACTIVE --> ACTIVE : Activate
+    ACTIVE --> SUSPENDED : Suspend
+    SUSPENDED --> ACTIVE : Reactivate
+    SUSPENDED --> REMOVED : Remove
+    REMOVED --> [*]
 ```
 
 | Status | Can transact? | Can list/buy? |
@@ -64,6 +72,8 @@ Use the **network selector** at the top to switch between Fuji, Sepolia, and XRP
 ---
 
 ## Adding an Account
+
+<YouTubeEmbed id="PLACEHOLDER_ADMIN" title="Admin — Managing Accounts and Roles" />
 
 Use this when onboarding a new registry partner, governance member, buyer, or other participant.
 

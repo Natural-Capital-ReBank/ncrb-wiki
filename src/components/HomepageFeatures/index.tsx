@@ -46,6 +46,16 @@ const FeatureList1: FeatureItem[] = [
 
 const FeatureList2: FeatureItem[] = [
   {
+    title: 'Whitepapers',
+    Svg: require('@site/static/img/guides.svg').default,
+    link: '/docs/whitepapers/',
+    description: (
+      <>
+        In-depth technical and market whitepapers for all 10 natural capital asset classes.
+      </>
+    ),
+  },
+  {
     title: 'FAQs',
     Svg: require('@site/static/img/faq.svg').default,
     link: '/docs/faq/',
@@ -65,6 +75,9 @@ const FeatureList2: FeatureItem[] = [
       </>
     ),
   },
+];
+
+const FeatureList3: FeatureItem[] = [
   {
     title: 'Support',
     Svg: require('@site/static/img/faq.svg').default,
@@ -105,6 +118,12 @@ export default function HomepageFeatures(): ReactNode {
         <br />
         <div className="row">
           {FeatureList2.map((props, idx) => (
+            <Feature key={idx} {...props} />
+          ))}
+        </div>
+        <br />
+        <div className="row">
+          {FeatureList3.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
         </div>

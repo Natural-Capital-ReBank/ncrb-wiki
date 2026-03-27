@@ -9,6 +9,24 @@ Registry partners are organisations that submit verified real-world asset certif
 
 **Examples of registry partners:** Verra, Gold Standard, American Carbon Registry, Plastic Bank, Plan Vivo.
 
+<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"1rem",margin:"1.5rem 0"}}>
+  <div style={{background:"linear-gradient(135deg,#14532d,#1e3a5f)",borderRadius:"12px",padding:"1.5rem",border:"1px solid #16a34a"}}>
+    <div style={{fontSize:"2rem",marginBottom:"0.75rem"}}>📜</div>
+    <div style={{color:"#bbf7d0",fontWeight:"700",marginBottom:"0.5rem"}}>Submit Certificates</div>
+    <div style={{color:"#86efac",fontSize:"0.875rem"}}>Upload RWA certificates with full metadata and documentation across multiple asset types</div>
+  </div>
+  <div style={{background:"linear-gradient(135deg,#1e3a5f,#14532d)",borderRadius:"12px",padding:"1.5rem",border:"1px solid #15803d"}}>
+    <div style={{fontSize:"2rem",marginBottom:"0.75rem"}}>✅</div>
+    <div style={{color:"#bfdbfe",fontWeight:"700",marginBottom:"0.5rem"}}>3-of-5 Multi-Sig</div>
+    <div style={{color:"#93c5fd",fontSize:"0.875rem"}}>Certificates require approval from 3 of 5 authorized governance members before tokens are minted</div>
+  </div>
+  <div style={{background:"linear-gradient(135deg,#064e3b,#1e3a5f)",borderRadius:"12px",padding:"1.5rem",border:"1px solid #059669"}}>
+    <div style={{fontSize:"2rem",marginBottom:"0.75rem"}}>📊</div>
+    <div style={{color:"#a7f3d0",fontWeight:"700",marginBottom:"0.5rem"}}>Track Status</div>
+    <div style={{color:"#6ee7b7",fontSize:"0.875rem"}}>Monitor approval progress, quality scores, and tokenization status in real time</div>
+  </div>
+</div>
+
 ---
 
 ## Prerequisites
@@ -24,33 +42,22 @@ Before you can submit certificates you need:
 
 ## The Certificate Lifecycle
 
-```
-Registry submits certificate
-        │
-        ▼
-Oracle API computes quality score (0–100)
-        │
-        ▼
-Certificate enters Governance queue
-        │
-     ┌──┴──────────────────┐
-     │ 3-of-5 governance    │
-     │ members vote         │
-     └──┬──────────────────┘
-        │
-   ┌────┴────┐
-Approved   Rejected / Expired
-   │
-   ▼
-Tokens minted and distributed
-   │
-   ▼
-Certificate available on marketplace
+```mermaid
+flowchart TD
+    A([Registry submits certificate]) --> B[Oracle API computes quality score 0–100]
+    B --> C{3-of-5 Registry\nmembers vote}
+    C --> D[Certificate enters Governance queue]
+    D --> E{3-of-5 Governance\nmembers vote}
+    E --> F([Tokens minted and distributed])
+    E --> G([Rejected / Expired])
+    F --> H([Certificate available on marketplace])
 ```
 
 ---
 
 ## Submitting a Certificate
+
+<YouTubeEmbed id="KICTL4MMM-Y" title="Registry - Submit Certificate" />
 
 ### 1 — Connect Your Wallet
 
@@ -87,6 +94,7 @@ Fill in the certificate metadata:
 | **Description** | Brief description of the project and environmental impact |
 | **Vintage / Year** | Year the environmental benefit was generated |
 | **Methodology** | Registry methodology code (e.g. `VM0015` for Verra) |
+| **Sub-Type** | Asset sub-classification (e.g. `removal_dac`, `afforestation`). Sub-types with scoring impact are indicated in the dropdown. |
 | **Country** | Country where the project is located |
 | **Quantity** | Volume of the asset (in the unit for your asset type) |
 
@@ -112,6 +120,16 @@ Enter the quality inputs that will be scored by the Oracle API. The fields vary 
 | Co-benefits | CCB Gold, SDG 13, SDG 15 |
 | Indigenous Community Engagement | Yes / No |
 
+**For carbon credits — Article 6 compliance fields (optional but affect quality score):**
+
+| Field | Options | Scoring impact |
+|---|---|---|
+| **Credit Mechanism** | VCM (default), Article 6.4, CORSIA, CDM → 6.4 | Article 6.4 → +5 additionality; CORSIA → +3 |
+| **Corresponding Adjustment** | Not applicable, Applied | Applied → +2 additionality |
+| **Letter of Authorisation (LoA) Status** | Not required / Pending, Provided | Provided (when CA = Applied) → +1 additionality |
+
+A **Corresponding Adjustment** means the host country has formally transferred the mitigation outcome, preventing double-counting against both the host country's NDC and the buyer's corporate claim. Setting this to *Applied* and providing a LoA maximises the credit's additionality score.
+
 The portal will show a **live quality score preview** as you fill in the fields.
 
 ### 6 — Set Token Distribution
@@ -130,6 +148,8 @@ You can adjust these percentages — they must sum to 100%.
 ### 7 — Select SDG Goals
 
 Select the UN Sustainable Development Goals your project contributes to. These are indexed on-chain and used by buyers to filter by impact alignment.
+
+Each SDG selected adds **+1 to the co-benefits dimension** of your quality score, capped at +4. This bonus stacks on top of any sub-type co-benefits bonus.
 
 ### 8 — Submit
 

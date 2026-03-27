@@ -98,12 +98,33 @@ Scores are benchmarked against **Sylvera** and **BeZero** institutional ratings 
 ## What compliance frameworks are supported?
 
 Carbon credits on NCRB are aligned with:
-- **Paris Agreement — Article 6** (corresponding adjustments tracked on-chain)
+- **Paris Agreement — Article 6** (corresponding adjustments tracked on-chain — see below)
 - **ICVCM Core Carbon Principles (CCP)** — gold standard for carbon integrity
 - **SBTi Net-Zero Standard** — BVCM and residual emission neutralisation
 - **ISO 14064-1/2/3** — GHG quantification and verification
 - **VCMI Claims Code of Practice** — Silver, Gold, and Platinum buyer claims
 - **CSRD E1** — climate disclosure integration
+
+## What is Paris Agreement Article 6.4 support?
+
+Article 6.4 is the UN-supervised international carbon crediting mechanism established under the Paris Agreement. Credits issued under Article 6.4 carry a "corresponding adjustment" — the host country formally transfers the mitigation outcome to the buyer's account, preventing it from being counted twice (once toward the host country's NDC and once toward the buyer's corporate claim).
+
+NCRB tracks three Article 6.4 fields per certificate, set during registration:
+
+| Field | Values | Meaning |
+|---|---|---|
+| **Credit Mechanism** | `vcm`, `article_6_4`, `corsia`, `cdm_transition` | Which crediting mechanism issued the credit |
+| **Corresponding Adjustment** | `applied`, `not_applicable` | Whether the host country has formally transferred the mitigation outcome |
+| **Letter of Authorisation (LoA)** | `provided`, `pending` | Whether a government LoA is on file |
+
+These fields are stored on-chain in the certificate's `assetMetadata` and affect the quality score:
+
+- `article_6_4` mechanism → **+5 additionality**
+- `corsia` mechanism → **+3 additionality**
+- Corresponding adjustment `applied` → **+2 additionality**
+- CA `applied` + LoA `provided` → **+1 additional** (stacked)
+
+On marketplace listing cards, Article 6.4 credits display a green **CA** badge and an **Art. 6.4** mechanism pill. Buyers purchasing Article 6.4 credits with a corresponding adjustment applied can make stronger Paris-aligned claims in their ESG and VCMI reporting.
 
 ---
 
