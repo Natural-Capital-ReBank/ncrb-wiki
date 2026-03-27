@@ -1,3 +1,8 @@
+---
+id: biodiversity_credits
+title: Biodiversity Credits
+---
+
 # NCRB Biodiversity Credits Whitepaper
 
 **Version 1.3 | February 2026**

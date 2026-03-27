@@ -1,3 +1,8 @@
+---
+id: carbon_credits
+title: Carbon Credits
+---
+
 # NCRB Carbon Credits Whitepaper
 
 **Version 1.3 | February 2026**

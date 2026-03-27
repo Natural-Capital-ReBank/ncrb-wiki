@@ -1,3 +1,8 @@
+---
+id: mining_rights
+title: Mining Rights
+---
+
 # NCRB Mining Rights Whitepaper
 
 **Version 1.3 | February 2026**

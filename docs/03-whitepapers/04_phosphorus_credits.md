@@ -1,3 +1,8 @@
+---
+id: phosphorus_credits
+title: Phosphorus Credits
+---
+
 # NCRB Phosphorus Credits Whitepaper
 
 **Version 1.3 | February 2026**
