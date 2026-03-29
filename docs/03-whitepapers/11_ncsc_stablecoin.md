@@ -205,14 +205,16 @@ if delta < 0: burn |delta| NCSC from stability reserve address
 
 #### Core Price Formula
 
-$$P_{NCSC} = \frac{V_{treasury}}{S_{NCSC}}$$
+```
+P_NCSC = V_treasury / S_NCSC
+```
 
 Where:
-- $P_{NCSC}$: NCSC market price (target: $1.00)
-- $V_{treasury}$: Total USD market value of all locked natural capital tokens
-- $S_{NCSC}$: Total NCSC supply (in dollars, i.e. `totalSupply() / 1,000,000`)
+- `P_NCSC` — NCSC market price (target: $1.00)
+- `V_treasury` — Total USD market value of all locked natural capital tokens
+- `S_NCSC` — Total NCSC supply in dollars (i.e. `totalSupply() / 1,000,000`)
 
-The mechanism ensures $P_{NCSC} = 1.00$ by keeping $S_{NCSC} = V_{treasury}$ at all times (within the 0.5% adjustment threshold).
+The mechanism ensures `P_NCSC = 1.00` by keeping `S_NCSC = V_treasury` at all times (within the 0.5% adjustment threshold).
 
 #### Compliance Design (USDC Pattern)
 
