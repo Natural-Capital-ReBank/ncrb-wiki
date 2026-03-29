@@ -21,3 +21,11 @@ Each whitepaper covers market overview, quality bands and pricing, token issuanc
 | 8 | [Renewable Energy Credits](/docs/whitepapers/renewable_energy_credits) | $200B | $100B |
 | 9 | [Forestry Rights](/docs/whitepapers/forestry_rights) | $1.5T | $450B |
 | 10 | [Biodiversity Credits](/docs/whitepapers/biodiversity_credits) | $400B | $120B |
+
+---
+
+## NCSC Stablecoin
+
+| | | |
+|---|---|---|
+| | [NCSC — Natural Capital Stablecoin](/docs/whitepapers/ncsc_stablecoin) | USD-pegged stablecoin backed by locked natural capital asset tokens |
